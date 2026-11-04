@@ -1,0 +1,108 @@
+
+/* UKEMI - selector de paletas */
+:root {
+  --c-bg: #2e3141;
+  --c-bg-rgb: 46, 49, 65;
+  --c-accent: #4c5c96;
+  --c-accent-hover: #45558d;
+  --c-panel-1: #353849;
+  --c-panel-2: #3d4051;
+  --c-panel-3: #454858;
+  --c-panel-4: #4d5060;
+  --c-panel-5: #555867;
+  --c-accent-dark-1: #3f4e85;
+  --c-accent-dark-2: #39477c;
+  --c-accent-dark-3: #324072;
+  --c-accent-dark-4: #2d3a69;
+  --c-accent-light-1: #5b6ba6;
+  --c-accent-light-2: #53639e;
+  --c-accent-muted: #7985b0;
+}
+body { background-image: linear-gradient(to top, rgba(var(--c-bg-rgb), .82), rgba(var(--c-bg-rgb), .82)), url("../../images/bg.jpg"); }
+
+body.theme-forest {
+  --c-bg: #202d29; --c-bg-rgb: 32, 45, 41;
+  --c-accent: #718b55; --c-accent-hover: #62794a;
+  --c-panel-1: #293832; --c-panel-2: #304239; --c-panel-3: #384c40;
+  --c-panel-4: #405647; --c-panel-5: #49614e;
+  --c-accent-dark-1: #5c7545; --c-accent-dark-2: #526b3e;
+  --c-accent-dark-3: #465d36; --c-accent-dark-4: #3c512f;
+  --c-accent-light-1: #8da66f; --c-accent-light-2: #819a64; --c-accent-muted: #a6b98f;
+}
+body.theme-ocean {
+  --c-bg: #172d38; --c-bg-rgb: 23, 45, 56;
+  --c-accent: #258b91; --c-accent-hover: #207b81;
+  --c-panel-1: #203943; --c-panel-2: #27434e; --c-panel-3: #2e4d59;
+  --c-panel-4: #365865; --c-panel-5: #3e6471;
+  --c-accent-dark-1: #217c83; --c-accent-dark-2: #1d7078;
+  --c-accent-dark-3: #19636c; --c-accent-dark-4: #155760;
+  --c-accent-light-1: #42a2a7; --c-accent-light-2: #34969c; --c-accent-muted: #80bdc0;
+}
+body.theme-earth {
+  --c-bg: #342a27; --c-bg-rgb: 52, 42, 39;
+  --c-accent: #b87555; --c-accent-hover: #a76749;
+  --c-panel-1: #40332e; --c-panel-2: #4a3933; --c-panel-3: #554139;
+  --c-panel-4: #60493f; --c-panel-5: #6b5146;
+  --c-accent-dark-1: #a56649; --c-accent-dark-2: #955c42;
+  --c-accent-dark-3: #85513b; --c-accent-dark-4: #754735;
+  --c-accent-light-1: #c78b6d; --c-accent-light-2: #bd805f; --c-accent-muted: #d7aa91;
+}
+#theme-picker { position: fixed; right: 22px; bottom: 22px; z-index: 10001; font-family: "Source Sans Pro", sans-serif; }
+#theme-toggle { width: 54px; height: 54px; border: 0; border-radius: 50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#fff; background:var(--c-accent); box-shadow:0 5px 20px rgba(0,0,0,.35); transition:transform .2s, background .2s; }
+#theme-toggle:hover { transform: translateY(-2px) scale(1.04); background:var(--c-accent-hover); }
+#theme-toggle svg { width:25px; height:25px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+#theme-options { position:absolute; right:0; bottom:66px; width:218px; padding:12px; border-radius:12px; background:var(--c-panel-1); border:1px solid rgba(255,255,255,.16); box-shadow:0 8px 28px rgba(0,0,0,.35); display:none; }
+#theme-picker.is-open #theme-options { display:block; animation:theme-pop .18s ease-out; }
+@keyframes theme-pop { from {opacity:0; transform:translateY(7px)} to {opacity:1; transform:translateY(0)} }
+#theme-options .theme-title { margin:0 0 8px; color:#fff; font-size:.75em; letter-spacing:.12em; text-transform:uppercase; }
+.theme-choice { display:flex; align-items:center; gap:10px; width:100%; padding:9px 8px; border:0; border-radius:7px; color:#fff; background:transparent; cursor:pointer; text-align:left; font:inherit; font-size:.9em; }
+.theme-choice:hover, .theme-choice[aria-pressed="true"] { background:rgba(255,255,255,.1); }
+.theme-choice:focus-visible, #theme-toggle:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+.theme-swatches { display:flex; gap:3px; }
+.theme-swatches i { display:block; width:13px; height:22px; border-radius:3px; }
+.theme-choice .theme-check { margin-left:auto; opacity:0; }
+.theme-choice[aria-pressed="true"] .theme-check { opacity:1; }
+@media screen and (max-width: 736px) { #theme-picker { right:15px; bottom:15px; } #theme-toggle { width:50px; height:50px; } }
+
+/* Correcciones de cobertura: fondos, franjas diagonales y menú */
+body {
+  background-color: var(--c-bg);
+  background-image: linear-gradient(to top, rgba(var(--c-bg-rgb), .82), rgba(var(--c-bg-rgb), .82)), url("../../images/bg.jpg");
+}
+
+/* La plantilla fija el fondo del banner y encabezados en ciertos tamaños */
+#banner,
+#wrapper > header,
+#footer {
+  background-color: var(--c-bg);
+  background-image: linear-gradient(to top, rgba(var(--c-bg-rgb), .82), rgba(var(--c-bg-rgb), .82)), url("../../images/bg.jpg");
+}
+
+/* Las piezas diagonales eran SVG con colores incrustados; ahora heredan la paleta */
+.wrapper:before,
+.wrapper:after {
+  background-image: none !important;
+  background-color: var(--c-bg);
+}
+.wrapper.style2:before,
+.wrapper.style2:after { background-color: var(--c-panel-1); }
+.wrapper.style3:before,
+.wrapper.style3:after { background-color: var(--c-panel-2); }
+.wrapper.style4:before,
+.wrapper.style4:after { background-color: var(--c-panel-3); }
+.wrapper.style5:before,
+.wrapper.style5:after { background-color: var(--c-panel-4); }
+.wrapper.style6:before,
+.wrapper.style6:after { background-color: var(--c-panel-5); }
+.wrapper.spotlight:before,
+.wrapper.spotlight:after { background-color: var(--c-accent); }
+
+/* Capas del menú y pantalla de carga */
+#menu,
+#menu .inner {
+  background-color: rgba(var(--c-bg-rgb), .96);
+}
+#page-wrapper > .is-loading:before,
+#page-wrapper > .is-loading:after {
+  background-color: rgba(var(--c-bg-rgb), .8);
+}
