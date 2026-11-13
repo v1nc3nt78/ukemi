@@ -369,9 +369,9 @@ body {
   }
 }
 /* Posición del selector de temas */
-.theme-choice {
+.theme-picker {
   position: fixed;
-  right: 25px;
+  right: 95px;
   bottom: 100px;
   z-index: 9998;
 }
@@ -379,5 +379,5 @@ body {
 /* Botón de WhatsApp */
 .whatsapp-float {
   right: 25px;
-  bottom: 25px;
+  bottom: 95px;
 }
